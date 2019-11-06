@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     // show a list of resources
     public function index() {
-        return view('/books');
+        // dd(Book::all());
+        // $books = Book::all();
+
+        return view('/books', ['books' => Book::all()]);
     }
 
     // show a specific resource (a user, article, list)
