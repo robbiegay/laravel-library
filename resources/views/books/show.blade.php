@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Books</div>
+                <div class="card-header">{{ $books->title }}</div>
 
                 <div class="card-body">
                     <table style="width:100%">
@@ -19,18 +19,16 @@
                             <th>Release Date</th>
                             <th>Media Type</th>
                         </tr>
-                        @foreach ($books as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->isbn }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->author }}</td>
-                            <td>{{ $item->keywords }}</td>
-                            <td>{{ $item->blurb }}</td>
-                            <td>{{ $item->release_date }}</td>
-                            <td>{{ $item->media_type }}</td>
+                            <td>{{ $books->id }}</td>
+                            <td>{{ $books->isbn }}</td>
+                            <td>{{ $books->title }}</td>
+                            <td>{{ $books->author }}</td>
+                            <td>{{ $books->keywords }}</td>
+                            <td>{{ $books->blurb }}</td>
+                            <td>{{ $books->release_date }}</td>
+                            <td>{{ $books->media_type }}</td>
                         </tr>
-                        @endforeach
                     </table>
                     <br>
                 </div>

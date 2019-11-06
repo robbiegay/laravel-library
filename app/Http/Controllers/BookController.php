@@ -9,29 +9,30 @@ class BookController extends Controller
 {
     // show a list of resources
     public function index() {
-        // dd(Book::all());
-        // $books = Book::all();
-
-        return view('/books', ['books' => Book::all()]);
+        return view('books.index', ['books' => Book::all()]);
     }
 
     // show a specific resource (a user, article, list)
-    public function show() {
-        return view('/books/{id}');
+    public function show($id) {
+        return view('books.show', ['books' => Book::findOrFail($id)]);
     }
 
     // create a resource
     public function create() {
-        return view('books/create');
+        return view('books.create');
     }
 
     // store (or persist) that resource
     public function store() {
-        // Article::create(request()->validate([
-        //     'title' => request('title'),
-        //     'excerpt' => request('excerpt'),
-        //     'body' => request('body')
-        // ]));
+        Book::create(request()->validate([
+            'isbn' => request('isbn'),
+            'title' => request('title'),
+            'author' => request('author'),
+            'keywords' => request('keywords'),
+            'blurb' => request('blurb'),
+            'release_date' => request('release_date'),
+            'media_type' => request('media_type'),
+        ]));
 
         return redirect('/books');
     }
