@@ -20,7 +20,7 @@
                             <th>Media Type</th>
                         </tr>
                         @foreach ($books as $item)
-                        <tr>
+                        <tr class="{{ $item->color }}">
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->isbn }}</td>
                             <td><a href="/books/{{ $item->id }}">{{ $item->title }}</a></td>

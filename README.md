@@ -41,11 +41,13 @@ Right now, the code likely won't run on GH Pages, so you might have to download 
 ## Running the tests
 
 Bugs that I would like to fix:
-- Invalid ISBN input for on "return" page.
-- Checked out books highlighted in red on "view all books" page
-- Confirmation/failure message for checking out, returning, or adding books.
+- ~~Invalid ISBN input for on "return" page.~~
+- ~~Pulling from the API if date is just YYYY.~~
+- ~~Checked out books highlighted in red on "view all books" page.~~
+- ~~Place API key in DB to prevent uploading to GitHub.~~
 - Admin button on "edit user" page.
-- Pulling from the API if date is just YYYY.
+- A user's "user" page shows books that they have checked out.
+- Confirmation/failure message for checking out, returning, or adding books.
 - User permissions: some features only available to certain users:
   - Librarians:
     - Viewing all users
@@ -53,8 +55,9 @@ Bugs that I would like to fix:
   - Users:
     - Clicking "users" button would just display their individual user information.
 
-**Features I would like to add:**
+**Features I would like to add if I had more time:**
 - More styling: table styling
+- Clean up code
 
 ## Built With
 

@@ -11,23 +11,26 @@ use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
     // show a list of resources
-    public function index() {
+    public function index()
+    {
         return view('checkout.index', ['checkout' => Checkout::all()]);
     }
 
     // create a resource
-    public function create() {
+    public function create()
+    {
         return view('checkout.checkout');
     }
 
     // store (or persist) that resource
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $info = $request->request->all();
         // dd($info);
-        $book = DB::select('SELECT * FROM books WHERE isbn = '.$info["isbn"]); // ('isbn','=',$info["isbn"])->all()
-        $user = DB::select('SELECT * FROM users WHERE user_name = "'.$info["user"].'"'); // ('isbn','=',$info["isbn"])->all()
+        $book = DB::select('SELECT * FROM books WHERE isbn = ' . $info["isbn"]); // ('isbn','=',$info["isbn"])->all()
+        $user = DB::select('SELECT * FROM users WHERE user_name = "' . $info["user"] . '"'); // ('isbn','=',$info["isbn"])->all()
         // dd($user[0]->id);
-        $checkedOut = DB::select('SELECT * FROM checkouts WHERE isbn = '.$info["isbn"]);
+        $checkedOut = DB::select('SELECT * FROM checkouts WHERE isbn = ' . $info["isbn"]);
         // dd(count($checkedOut));
         if (count($book) === 1 && count($user) === 1 && !count($checkedOut)) {
             // Checkout::create([
@@ -38,11 +41,11 @@ class CheckoutController extends Controller
                 [
                     'checked_out_on' => now(),
                     'book_id' => $book[0]->id,
-                    'user_id' => $user[0]->id, 
+                    'user_id' => $user[0]->id,
                     'checked_out_by' => $user[0]->name,
-                    'isbn' => $book[0]->isbn, 
-                    'title' => $book[0]->title, 
-                    'author' => $book[0]->author, 
+                    'isbn' => $book[0]->isbn,
+                    'title' => $book[0]->title,
+                    'author' => $book[0]->author,
                 ]
             );
         }
@@ -51,21 +54,22 @@ class CheckoutController extends Controller
     }
 
     // return a book
-    public function edit() {
+    public function edit()
+    {
         return view('checkout.return');
     }
 
 
 
     // delete a resource
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         $info = $request->request->all();
-        $checkedOut = DB::select('SELECT * FROM checkouts WHERE isbn = '.$info["isbn"]);
-        // dd($checkedOut);
-        
-        $book = Checkout::find($checkedOut[0]->id);
+        $checkedOut = Checkout::where('isbn', '=', $info['isbn'])->firstOrFail();
+        //$checkedOut = DB::select("SELECT * FROM checkouts WHERE 'isbn' = ".$info['isbn']);
+        $book = Checkout::find($checkedOut->id);
         $book->delete();
-        
+
         return redirect('/checkout');
     }
 }
