@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/books', 'BookController@index');
 Route::get('/books/api', 'BookController@apiCreate');
-Route::post('/books/api', 'BookController@apiStore');
+Route::post('/books/api', 'BookController@apiFetch');
 Route::get('/books/create', 'BookController@create');
 Route::post('/books/create', 'BookController@store');
 Route::get('/books/{id}', 'BookController@show');
