@@ -1,6 +1,18 @@
 <?php
     function format_item($item) {
-        $date = strlen($item->volumeInfo->publishedDate) === 4 ? $item->volumeInfo->publishedDate . '-01-01' : $item->volumeInfo->publishedDate;
+        if (strlen($item->volumeInfo->publishedDate) === 4) {
+            $date = $item->volumeInfo->publishedDate . '-01-01';
+        } elseif (strlen($item->volumeInfo->publishedDate) === 7) {
+            $date = $item->volumeInfo->publishedDate . '-01';
+        } else {
+            $date = $item->volumeInfo->publishedDate;
+        }
+        // Attempt at double nested ternary
+        // $date = strlen($item->volumeInfo->publishedDate) === 4 ? 
+        //     $item->volumeInfo->publishedDate . '-01-01' : 
+        //     strlen($item->volumeInfo->publishedDate) === 7 ?
+        //         $item->volumeInfo->publishedDate . '-01' :
+        //         $item->volumeInfo->publishedDate;
         return $date;
     }
 ?>

@@ -45,6 +45,7 @@ Bugs that I would like to fix:
 - ~~Pulling from the API if date is just YYYY.~~
 - ~~Checked out books highlighted in red on "view all books" page.~~
 - Admin button on "edit user" page.
+- A user's "user" page shows books that they have checked out.
 - Confirmation/failure message for checking out, returning, or adding books.
 - User permissions: some features only available to certain users:
   - Librarians:
