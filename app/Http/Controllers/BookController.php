@@ -34,7 +34,7 @@ class BookController extends Controller
         $title = $info['title'];
         $author = $info['author'];
         $client = new Client(['base_uri' => 'https://www.googleapis.com/books/v1/volumes']); 
-        $response = $client->GET('?q='.$title.$author.'&key=AIzaSyCUe-9GYHQZ8rM7_UnxRLKpqXvTX4JStNM');
+        $response = $client->GET('?q='.$title.$author.'&key=KEY');
         $json = json_decode($response->getBody()->getContents())->items;
 
         return view('books.apiResults', ['json' => $json]);
