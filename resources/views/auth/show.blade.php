@@ -27,7 +27,7 @@
                         </tr>
                     </table>
                     <br>
-                    <a href="/user/{{ $user->id }}/edit">Edit</a>
+                    <a href="/users/{{ $user->id }}/edit">Edit</a>
                 </div>
             </div>
         </div>

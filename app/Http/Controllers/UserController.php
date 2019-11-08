@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-     // show a list of resources
-     public function index() {
-        return view('/user');
+    // show a list of resources
+    public function index() {
+        return view('auth.index', ['users' => User::all()]);
     }
 
     // show a specific resource (a user, article, list)
     public function show($id) {
         $user = User::findOrFail($id);
 
-        return view('/user', ['user' => $user]);
+        return view('auth.show', ['user' => $user]);
     }
 
     // // create a resource
@@ -43,7 +43,7 @@ class UserController extends Controller
     }
 
     // persist that edit
-    public function update($id) { //Article $article
+    public function update($id) {
         $user = User::find($id);
 
         $user->name = request('name');
@@ -56,12 +56,14 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('/user/' . $user->id);
+        return view('auth.show',['user' => $user]);
     }
 
-    // // delete a resource
-    // public function destroy() {
+    // delete a resource
+    public function destroy($id) {
+        $user = User::find($id);
+        $user->delete();
         
-    //     return redirect('/books');
-    // }
+        return redirect('/users');
+    }
 }

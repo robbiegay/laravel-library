@@ -16,15 +16,26 @@ class CreateCheckoutsTable extends Migration
         Schema::create('checkouts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('checked_out_on')->useCurrent();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id');
             $table->string('checked_out_by');
+            $table->string('isbn');
             $table->string('title');
-            $table->date('due_date');
-            $table->tinyInteger('num_rechecks')->default(0);
-            $table->bigInteger('late_fees');
+            $table->string('author');
+            // $table->date('due_date');
+            // $table->tinyInteger('num_rechecks')->default(0);
+            // $table->bigInteger('late_fees');
             // wait list
-            $table->date('missing')->nullable();
-            $table->date('archived')->nullable();
+            // $table->date('missing')->nullable();
+            // $table->date('archived')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
+
+            $table->foreign('book_id')
+            ->references('id')->on('books');
         });
     }
 

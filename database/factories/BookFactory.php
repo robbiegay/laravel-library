@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Book::class, function (Faker $faker) {
     return [
 
-        'isbn' => $faker->randomDigit,
+        'isbn' => $faker->unique(true)->randomNumber($nbDigits = 8),
         'title' => $faker->text($maxNbChars = 25),
         'author' => $faker->name,
         'keywords' => $faker->text($maxNbChars = 25),

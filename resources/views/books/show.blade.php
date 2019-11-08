@@ -31,6 +31,7 @@
                         </tr>
                     </table>
                     <br>
+                    <a href="/books/{{ $books->id }}/edit">Edit Title</a>
                 </div>
             </div>
         </div>

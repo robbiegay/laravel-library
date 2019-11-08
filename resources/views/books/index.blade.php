@@ -33,6 +33,9 @@
                         @endforeach
                     </table>
                     <br>
+                    <a href="/books/create">Add Title (Manual)</a>
+                    <br>
+                    <a href="/books/api">Add Title (Google API)</a>
                 </div>
             </div>
         </div>

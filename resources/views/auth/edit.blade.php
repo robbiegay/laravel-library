@@ -8,9 +8,8 @@
                 <div class="card-header">{{ __('Edit User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/user/{{ $user->id }}">
+                    <form method="POST" action="/users/{{ $user->id }}/edit">
                     @csrf
-                    @method('PUT')
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -104,11 +103,15 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
                             <label for="admin" class="col-md-4 col-form-label text-md-right">{{ __('Admin') }}</label>
                             
                             <div class="col-md-6">
+
                                 <input id="admin" type="checkbox" class="form-control" name="admin" value="{{ $user->admin }}" autocomplete="admin" autofocus>
+
                             </div>
                         </div>
 
@@ -119,6 +122,7 @@
                                 </button>
                             </div>
                         </div>
+                        <a href="/users/{{ $user->id }}/delete">Delete</a>
                     </form>
                 </div>
             </div>
