@@ -1,3 +1,10 @@
+<?php
+    function format_item($item) {
+        $date = strlen($item->volumeInfo->publishedDate) === 4 ? $item->volumeInfo->publishedDate . '-01-01' : $item->volumeInfo->publishedDate;
+        return $date;
+    }
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -22,10 +29,10 @@
                             <td>{{ $item->volumeInfo->publishedDate ?: $item->volumeInfo->publishedDate }}</td>
                             <td>
                                 <form method="POST" action="/books/create">
-                                @csrf
+                                    @csrf
                                     <input type="hidden" name="title" value="{{ $item->volumeInfo->title }}">
                                     <input type="hidden" name="author" value="{{ $item->volumeInfo->authors[0] }}">
-                                    <input type="hidden" name="release_date" value="{{ $item->volumeInfo->publishedDate }}">
+                                    <input type="hidden" name="release_date" value="{{ format_item($item) }}">
                                     <input type="hidden" name="isbn" value="{{ $item->volumeInfo->industryIdentifiers[0]->identifier }}">
                                     <button type="submit">Add</button>
                                 </form>

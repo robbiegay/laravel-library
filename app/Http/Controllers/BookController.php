@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Checkout;
 use App\Book;
+use DB;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -12,7 +14,30 @@ class BookController extends Controller
     // show a list of resources
     public function index()
     {
-        return view('books.index', ['books' => Book::all()]);
+        $books = Book::all();
+
+
+        $checked_out_books = DB::table('books')
+            ->join('checkouts', 'books.isbn', '=', 'checkouts.isbn')
+            ->get();
+
+
+
+        foreach ($checked_out_books as $join) {
+            foreach ($books as $book) {
+                if ($book->isbn == $join->isbn) {
+                    $book->color = "bg-danger";
+                } elseif (!$book->color) {
+                    $book->color = "";
+                }
+            }
+        }
+        // dd($books);
+
+        return view('books.index', [
+            'books' => $books
+            // 'checked' => Checkout::all(),
+        ]);
     }
 
     // show a specific resource (a user, article, list)
@@ -33,8 +58,8 @@ class BookController extends Controller
         $info = $request->request->all();
         $title = $info['title'];
         $author = $info['author'];
-        $client = new Client(['base_uri' => 'https://www.googleapis.com/books/v1/volumes']); 
-        $response = $client->GET('?q='.$title.$author.'&key=KEY');
+        $client = new Client(['base_uri' => 'https://www.googleapis.com/books/v1/volumes']);
+        $response = $client->GET('?q=' . $title . $author . '&key=KEY');
         $json = json_decode($response->getBody()->getContents())->items;
 
         return view('books.apiResults', ['json' => $json]);
