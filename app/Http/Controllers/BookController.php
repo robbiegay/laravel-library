@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API;
 use App\Checkout;
 use App\Book;
 use DB;
@@ -55,11 +56,12 @@ class BookController extends Controller
     // store (or persist) that resource
     public function apiFetch(Request $request)
     {
+        $key = API::find(1)->api_key;
         $info = $request->request->all();
         $title = $info['title'];
         $author = $info['author'];
         $client = new Client(['base_uri' => 'https://www.googleapis.com/books/v1/volumes']);
-        $response = $client->GET('?q=' . $title . $author . '&key=API_KEY');
+        $response = $client->GET('?q=' . $title . $author . '&key=' . $key);
         $json = json_decode($response->getBody()->getContents())->items;
 
         return view('books.apiResults', ['json' => $json]);
