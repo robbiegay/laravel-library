@@ -36,7 +36,9 @@ While logged in, if on any page other than the homepage, than the top right nav 
 
 ### Installing
 
-Right now, the code likely won't run on GH Pages, so you might have to download the code yourself...
+Since Laravel sites can't be hosted on GitHub pages, if you want a live demo of the site, you may have to download the code and run it locally.
+
+If you just want to see a demo, I uploaded a video demo of the app here: [Larevel Library Video Demo](https://youtu.be/M9PBVx0f840)
 
 ## Running the tests
 
@@ -44,7 +46,7 @@ Bugs that I would like to fix:
 - ~~Invalid ISBN input for on "return" page.~~
 - ~~Pulling from the API if date is just YYYY.~~
 - ~~Checked out books highlighted in red on "view all books" page.~~
-- ~~Place API key in DB to prevent uploading to GitHub.~~
+- ~~Placed API key in DB to prevent uploading to GitHub.~~
 - Admin button on "edit user" page.
 - A user's "user" page shows books that they have checked out.
 - Confirmation/failure message for checking out, returning, or adding books.
